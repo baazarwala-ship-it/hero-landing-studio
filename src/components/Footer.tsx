@@ -21,14 +21,14 @@ const Footer = () => {
   return (
     <footer className="border-t border-primary/30 bg-background pt-16">
       {/* Top accent line */}
-      <div className="h-1 w-full bg-gradient-to-r from-primary via-primary/50 to-primary" />
+      <div className="h-1 w-full bg-primary" />
 
       <div className="container py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-6">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-display text-lg font-bold text-primary-foreground">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary font-display text-lg font-bold text-primary-foreground">
                 L
               </div>
               <span className="font-display text-xl font-semibold text-foreground">Lyfex</span>
@@ -42,7 +42,7 @@ const Footer = () => {
                 <a
                   key={index}
                   href={href}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-secondary text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+                  className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -82,9 +82,9 @@ const Footer = () => {
             <Input
               type="email"
               placeholder="Enter your email"
-              className="w-full md:w-64 bg-secondary border-border/50"
+              className="w-full md:w-64 bg-secondary border-border/50 rounded-full"
             />
-            <Button variant="gold">Subscribe</Button>
+            <Button variant="gold" className="rounded-full">Subscribe</Button>
           </div>
         </div>
 

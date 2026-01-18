@@ -1,4 +1,4 @@
-import { MessageCircle, Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import { Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const DiscussionRoomsSection = () => {
@@ -27,65 +27,67 @@ const DiscussionRoomsSection = () => {
   ];
 
   return (
-    <section className="py-16">
+    <section id="charcha" className="py-16 md:py-24">
       <div className="container">
         {/* Section Header */}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="flex items-start justify-between mb-10">
           <div>
-            <h2 className="flex items-center gap-2 section-title">
-              <MessageCircle className="h-6 w-6 text-primary" />
-              Discussion Rooms
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-1.5 text-sm text-primary mb-4">
+              💬 Always Open
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+              Charcha Rooms <span className="text-pink-500">(No PPTs Allowed)</span>
             </h2>
             <p className="mt-2 text-muted-foreground">
-              Join expert-led conversations on trending topics
+              Discussions where you can speak — or just listen.
             </p>
           </div>
           <div className="hidden md:flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="rounded-full border border-border">
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full border border-border">
-              <ChevronRight className="h-4 w-4" />
-            </Button>
+            <button className="p-2 rounded-full border border-border bg-secondary hover:bg-secondary/80 transition-colors">
+              <ChevronLeft className="h-5 w-5 text-foreground" />
+            </button>
+            <button className="p-2 rounded-full border border-border bg-secondary hover:bg-secondary/80 transition-colors">
+              <ChevronRight className="h-5 w-5 text-foreground" />
+            </button>
           </div>
         </div>
 
-        {/* Discussions Grid */}
+        {/* Discussion Cards */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {discussions.map((discussion, index) => (
             <div
               key={index}
-              className="group relative flex flex-col overflow-hidden rounded-[2rem] border-2 border-primary/30 bg-card p-6 transition-all hover:border-primary hover:shadow-lg"
+              className="relative rounded-[60px] border-2 border-pink-500/40 p-6 bg-card/50 backdrop-blur-sm hover:border-pink-500/60 transition-colors"
             >
               {/* Category Badge */}
-              <div className="mb-4 w-fit rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-foreground">
+              <div className="inline-flex items-center rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-foreground mb-4">
                 {discussion.category}
               </div>
 
               {/* Title */}
-              <h3 className="mb-3 text-lg font-semibold leading-snug text-foreground">
+              <h3 className="font-display text-lg font-semibold text-foreground mb-2 leading-snug">
                 {discussion.title}
               </h3>
 
               {/* Mentor */}
-              <p className="mb-4 text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mb-4">
                 with {discussion.mentor}
               </p>
 
-              {/* Date and Time */}
-              <div className="mb-6 flex items-center gap-4">
-                <div className="flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-sm text-muted-foreground">
-                  <Calendar className="h-3.5 w-3.5" />
-                  <span>{discussion.date}</span>
+              {/* Date & Time */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                  <Calendar className="h-3 w-3" />
+                  {discussion.date}
                 </div>
-                <div className="flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1 text-sm text-muted-foreground">
-                  <Clock className="h-3.5 w-3.5" />
-                  <span>{discussion.time}</span>
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground border border-border rounded-full px-3 py-1">
+                  <Clock className="h-3 w-3" />
+                  {discussion.time}
                 </div>
               </div>
 
               {/* Join Button */}
-              <Button variant="gold" className="mt-auto w-full">
+              <Button variant="gold" className="w-full rounded-full">
                 Join Discussion →
               </Button>
             </div>
