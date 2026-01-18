@@ -9,86 +9,81 @@ const FAQSection = () => {
   const faqs = [
     {
       question: "What is Lyfex?",
-      answer: "Lyfex is an interactive online learning platform that offers LIVE classes with expert mentors across various skill categories. You can join sessions in real-time, participate in discussions, and learn at your own pace.",
+      answer: "Lyfex is an online live learning platform to help people explore different skills and seek support anytime.",
     },
     {
-      question: "How do I join a live class?",
-      answer: "Simply browse our available live sessions, click on 'Join Now' for any session you're interested in, and you'll be connected to the live class instantly. No downloads required!",
+      question: "How do I join a live session?",
+      answer: "Simply browse our Live Addas section and click 'Join Now' on any session that interests you. No prior booking required!",
     },
     {
-      question: "Can I switch mentors?",
-      answer: "Yes! One of Lyfex's unique features is the flexibility to switch mentors anytime. If you feel another teaching style suits you better, you can easily transition to a different mentor.",
+      question: "Can I become a mentor?",
+      answer: "Yes! If you have expertise in any skill and love teaching, you can apply to become a Lyfex mentor through our application process.",
     },
     {
-      question: "What skills can I learn?",
-      answer: "We offer courses in Development, Design, Communication, Business, Marketing, Leadership, Music & Arts, and Technology. New courses are added regularly based on trending topics.",
+      question: "Is there a free trial?",
+      answer: "Absolutely! You can join public sessions for free and explore our platform before subscribing to premium features.",
     },
     {
-      question: "How does the Support feature work?",
-      answer: "The Support section allows you to post tasks that need expert help. Set your budget and deadline, and qualified experts will complete your tasks affordably and professionally.",
+      question: "What topics are covered?",
+      answer: "We cover a wide range of topics from technology, design, business, communication, arts, and many more skill categories.",
     },
     {
-      question: "Are there any free courses?",
-      answer: "Yes! We offer several free introductory courses and regularly provide free trial access to premium courses. Subscribe to our newsletter to stay updated on free offerings.",
+      question: "How do Charcha Rooms work?",
+      answer: "Charcha Rooms are discussion-focused sessions where you can speak, debate, or just listen to conversations on various topics.",
     },
   ];
 
-  // Split FAQs into two columns
-  const leftFaqs = faqs.filter((_, i) => i % 2 === 0);
-  const rightFaqs = faqs.filter((_, i) => i % 2 === 1);
+  const leftFaqs = faqs.slice(0, 3);
+  const rightFaqs = faqs.slice(3, 6);
 
   return (
-    <section className="py-16">
+    <section className="py-16 md:py-24">
       <div className="container">
         {/* Section Header */}
-        <div className="mb-8">
+        <div className="mb-10">
           <h2 className="section-title">FAQ</h2>
           <p className="mt-2 text-muted-foreground">
             Frequently asked questions
           </p>
         </div>
 
-        {/* FAQ Grid */}
-        <div className="grid gap-4 md:grid-cols-2">
+        {/* FAQ Grid - Two Columns */}
+        <div className="grid gap-6 md:grid-cols-2">
           {/* Left Column */}
-          <div className="flex flex-col gap-4">
-            <Accordion type="single" collapsible className="space-y-4">
-              {leftFaqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`left-${index}`}
-                  className="rounded-xl border-0 bg-gradient-to-r from-primary/20 to-primary/10 px-4 overflow-hidden"
-                >
-                  <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-4">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-4">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+          <Accordion type="single" collapsible className="space-y-4">
+            {leftFaqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`left-${index}`}
+                className="rounded-2xl border-0 overflow-hidden"
+              >
+                <AccordionTrigger className="px-6 py-4 text-left font-medium text-foreground bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 hover:no-underline [&[data-state=open]]:rounded-t-2xl [&[data-state=closed]]:rounded-2xl">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6 py-4 text-foreground bg-gradient-to-r from-primary/90 to-primary/70 rounded-b-2xl">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
 
           {/* Right Column */}
-          <div className="flex flex-col gap-4">
-            <Accordion type="single" collapsible className="space-y-4">
-              {rightFaqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`right-${index}`}
-                  className="rounded-xl border-0 bg-gradient-to-r from-primary/20 to-primary/10 px-4 overflow-hidden"
-                >
-                  <AccordionTrigger className="text-left font-medium text-foreground hover:no-underline py-4">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-4">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
+          <Accordion type="single" collapsible className="space-y-4">
+            {rightFaqs.map((faq, index) => (
+              <AccordionItem
+                key={index}
+                value={`right-${index}`}
+                className="rounded-2xl border-0 overflow-hidden"
+              >
+                <AccordionTrigger className="px-6 py-4 text-left font-medium text-foreground bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 hover:no-underline [&[data-state=open]]:rounded-t-2xl [&[data-state=closed]]:rounded-2xl">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="px-6 py-4 text-foreground bg-gradient-to-r from-primary/90 to-primary/70 rounded-b-2xl">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </div>
     </section>

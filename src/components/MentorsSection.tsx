@@ -1,69 +1,45 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-
 const MentorsSection = () => {
-  const [activeTab, setActiveTab] = useState("Live Now");
-  const tabs = ["Live Now", "Most Active", "New"];
-
   const mentors = [
     {
       name: "Dr. Sarah Chen",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop&crop=face",
       skills: ["Python", "Data Science", "AI"],
       students: "2,500",
       isLive: true,
+      bgColor: "bg-primary/20",
+      borderColor: "border-primary/40",
     },
     {
       name: "Alex Rivera",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
       skills: ["UI/UX", "Design", "Figma"],
       students: "1,800",
-      isLive: true,
+      isLive: false,
+      bgColor: "bg-secondary",
+      borderColor: "border-border",
     },
     {
       name: "Marcus Kim",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
       skills: ["Robotics", "Arduino", "IoT"],
       students: "1,200",
       isLive: true,
+      bgColor: "bg-primary",
+      borderColor: "border-primary",
     },
   ];
 
   return (
-    <section className="py-16">
+    <section id="mentors" className="py-16 md:py-24">
       <div className="container">
         {/* Section Header */}
-        <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div>
-            <h2 className="section-title">Mentors</h2>
-            <p className="mt-2 text-muted-foreground">
-              Learn from industry experts
-            </p>
+        <div className="mb-10">
+          <div className="inline-flex items-center gap-2 rounded-full bg-primary/20 px-4 py-1.5 text-sm text-primary mb-4">
+            ☕ The Regulars
           </div>
-          <div className="flex items-center gap-4">
-            {/* Tabs */}
-            <div className="flex items-center gap-2">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                    activeTab === tab
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary text-foreground hover:bg-secondary/80"
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-            <div className="hidden md:flex items-center gap-2">
-              <Button variant="ghost" size="icon" className="rounded-full border border-border">
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon" className="rounded-full border border-border">
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Regulars at <span className="text-primary">the Dukaan</span>
+          </h2>
         </div>
 
         {/* Mentors Grid */}
@@ -71,29 +47,28 @@ const MentorsSection = () => {
           {mentors.map((mentor, index) => (
             <div
               key={index}
-              className="group relative flex flex-col items-center rounded-3xl border border-border/30 bg-card p-6 transition-all hover:border-primary/30"
+              className={`relative rounded-[60px] border-2 ${mentor.borderColor} ${mentor.bgColor} p-6 flex flex-col items-center transition-all hover:scale-[1.02]`}
             >
-              {/* Avatar Circle */}
-              <div className="relative mb-4">
-                {mentor.isLive && (
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-                    <div className="live-badge">LIVE</div>
-                  </div>
-                )}
-                <div className="h-32 w-32 md:h-40 md:w-40 rounded-full border-4 border-secondary bg-gradient-to-br from-secondary to-muted flex items-center justify-center">
-                  <div className="h-28 w-28 md:h-36 md:w-36 rounded-full bg-muted/50" />
-                </div>
+              {/* Mentor Image */}
+              <div className={`relative h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden border-4 ${mentor.isLive ? "border-primary" : "border-border"} mb-4`}>
+                <img
+                  src={mentor.image}
+                  alt={mentor.name}
+                  className="h-full w-full object-cover"
+                />
               </div>
 
-              {/* Mentor Info */}
-              <h3 className="mb-3 text-lg font-semibold text-foreground">{mentor.name}</h3>
+              {/* Name */}
+              <h3 className="font-display text-lg font-semibold text-foreground mb-3">
+                {mentor.name}
+              </h3>
 
               {/* Skills */}
-              <div className="mb-4 flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-2 mb-3">
                 {mentor.skills.map((skill, skillIndex) => (
                   <span
                     key={skillIndex}
-                    className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground"
+                    className="px-3 py-1 text-xs rounded-full border border-border bg-secondary text-foreground"
                   >
                     {skill}
                   </span>
@@ -101,9 +76,16 @@ const MentorsSection = () => {
               </div>
 
               {/* Students */}
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground mb-3">
                 {mentor.students} students
               </p>
+
+              {/* Live Badge */}
+              {mentor.isLive && (
+                <span className="live-badge">
+                  LIVE
+                </span>
+              )}
             </div>
           ))}
         </div>
